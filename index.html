@@ -14,24 +14,5 @@
   <body>
     <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
     <script src="https://mediafiles.botpress.cloud/bddcbb08-dafc-4382-92c4-79d05e19cada/webchat/config.js" defer></script>
-    <script>
-      function handleClick() {
-        window.botpressWebChat.sendPayload({
-          type: 'trigger',
-          payload: {
-            myCustomProperty: 'hello',
-          },
-        })
-      }
- 
-      window.botpressWebChat.onEvent(
-        function (event) {
-          if (event.type === 'UI.OPENED') {
-            window.botpressWebChat.sendEvent({ type: 'show' })
-          }
-        },
-        ['UI.OPENED']
-      )
-    </script>
   </body>
 </html>
