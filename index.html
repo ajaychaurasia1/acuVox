@@ -12,24 +12,32 @@
     </style>
   </head>
   <body>
+    <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+    <script src="https://mediafiles.botpress.cloud/bddcbb08-dafc-4382-92c4-79d05e19cada/webchat/config.js" defer></script>
+ 
+    <button id="myButton">Click Me!</button>
+    <script>
+      function handleClick() {
+        console.log('Button clicked!')
+        window.botpressWebChat.sendPayload({
+          type: 'trigger',
+          payload: {
+            myCustomProperty: 'hello',
+          },
+        })
+      }
+ 
+      const button = document.getElementById('myButton')
+      button.addEventListener('click', handleClick)
+ 
+      window.botpressWebChat.onEvent(
+        function (event) {
+          if (event.type === 'LIFECYCLE.LOADED') {
+            window.botpressWebChat.sendEvent({ type: 'show' })
+          }
+        },
+        ['LIFECYCLE.LOADED']
+      )
+    </script>
   </body>
-  <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
-<script>
-  window.botpressWebChat.init({
-      "composerPlaceholder": "Chat with AcuVox",
-      "botConversationDescription": "Your host and guide",
-      "botId": "bddcbb08-dafc-4382-92c4-79d05e19cada",
-      "hostUrl": "https://cdn.botpress.cloud/webchat/v1",
-      "messagingUrl": "https://messaging.botpress.cloud",
-      "clientId": "bddcbb08-dafc-4382-92c4-79d05e19cada",
-      "lazySocket": true,
-      "botName": "AcuVox",
-      "avatarUrl": "https://acuverconsulting.com/wp-content/uploads/2021/09/cropped-secondary-logo-A2-270x270.png",
-      "frontendVersion": "v1",
-      "useSessionStorage": true,
-      "enableConversationDeletion": true,
-      "theme": "prism",
-      "themeColor": "#000b5a"
-  });
-</script>
 </html>
