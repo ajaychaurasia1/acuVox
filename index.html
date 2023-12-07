@@ -14,11 +14,8 @@
   <body>
     <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
     <script src="https://mediafiles.botpress.cloud/bddcbb08-dafc-4382-92c4-79d05e19cada/webchat/config.js" defer></script>
- 
-    <button id="myButton">Click Me!</button>
     <script>
       function handleClick() {
-        console.log('Button clicked!')
         window.botpressWebChat.sendPayload({
           type: 'trigger',
           payload: {
@@ -27,12 +24,9 @@
         })
       }
  
-      const button = document.getElementById('myButton')
-      button.addEventListener('click', handleClick)
- 
       window.botpressWebChat.onEvent(
         function (event) {
-          if (event.type === 'LIFECYCLE.LOADED') {
+          if (event.type === 'UI.OPENED') {
             window.botpressWebChat.sendEvent({ type: 'show' })
           }
         },
